@@ -1,0 +1,248 @@
+My programs 
+
+
+1. program for linked list creation of n nodes and deletion on nth element 
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node *inputer (struct node *ptr);
+void printer(struct node *ptr);
+int counter(struct node *ptr);
+struct node *count2(struct node *ptr,int flag);
+struct node *delete(struct node *ptr, int flag);
+struct node{
+    int data;
+    struct node *link;
+};
+
+
+int main()
+{    
+    int n,i,flag;
+    struct node *start,*ptr,*pa,*pb,*pc,*pt;
+    printf("Enter how many node you want=");
+    scanf("%d",&n);
+    start= malloc(sizeof (struct node));
+    ptr=start;
+    pt=start;
+    inputer(ptr);
+    for (i=1;i<n;i++){
+      ptr= malloc(sizeof (struct node));
+      if (ptr==NULL)
+      exit(1);
+      inputer(ptr);
+      pt->link=ptr;
+      pt=pt->link;
+    }
+
+    printer(start);
+    printf("Enter the element to delete =");
+    scanf("%d",&flag);
+    start=delete(start, flag);
+    printf("The list after deletion \n");
+    printer(start);  
+
+    return 0;
+}
+struct node *inputer (struct node *ptr){
+    printf("Enter the data=");
+    scanf("%d",&ptr->data);
+    ptr->link=NULL;
+}
+void printer(struct node *ptr){
+     while (ptr!=NULL){
+    printf("%d ",ptr->data);
+    ptr=ptr->link;
+    }
+}
+int counter(struct node *ptr){
+    int count=0;
+    while (ptr!=NULL){
+    count++;
+    ptr=ptr->link;
+    }
+    return count;
+}
+struct node *count2(struct node *ptr,int flag){
+   int count=1;
+    while (count!=flag){
+    ptr=ptr->link;
+    count++;
+    }
+    return(ptr);
+}
+struct node *delete(struct node *ptr, int flag){
+    struct node *p1,*p2,*p3;
+    if (flag==1){
+        p1=ptr;
+        p2=count2(ptr, flag +1);
+        p1->link=NULL;
+        ptr=p2;
+        return ptr;
+    }
+    if (flag==counter(ptr)){
+        p1=count2(ptr,flag-1);
+        p2=count2(ptr,flag);
+        p1->link=NULL;
+        free(p2);
+        return ptr;
+    }
+    else{
+    p1=count2(ptr,flag-1);
+    p2=count2(ptr,flag);
+    p3=count2(ptr,flag+1);
+    p2->link=NULL;
+    p1->link=p3;
+    free(p2);
+    }
+    return p1;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+implementation of linear queue using array , performs insertion , deletion , and printing of elelments . 
+
+#include <stdlib.h>
+#include <stdio.h>
+#define size 5
+int q[size];
+int f=-1;
+int r=-1;
+void print();
+
+
+void del(){
+   if (f==-1){
+       printf("stack was empty ");
+    return;
+       }
+    else if(f==r) {
+     printf("all elements deleted\n");
+     f=r=-1;
+     return;
+    }
+     else
+     f++;
+        
+    }
+int enq(int x)
+{
+    if (f==-1){
+        f=r=0;
+        q[r]=x;
+    }
+    else if (r==size-1){
+        printf("stack full\n");
+        //print();
+        return -1;
+    }
+    else {
+        r++;
+        q[r]=x;
+    }
+}
+int main()
+{
+    int x;
+while(1)
+{
+    scanf("%d",&x);
+    if (x==-1)
+    break;
+    int d=enq(x);
+    if (d==-1)
+    break;
+    //printf("wait");
+    
+}
+print();
+del();
+del();
+del();
+del();
+del();
+
+
+print();
+    
+}
+void print(){
+  if (f==-1){
+  printf("\nNo elements ");
+  
+      return;
+  }
+    for (int i=f;i<size;i++){
+        
+        printf("%d ",q[i]);
+        //f++;
+     }
+     
+     printf("\n");
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+program to create a working stack with array implementation , program performs insertion of n elements and deletion of n elements
+
+#define size 6
+#include <stdio.h>
+#include <stdlib.h>
+
+int a[size];
+int t=-1,i=0;
+void  delete(){
+    if (t==-1){
+     printf("\nunderflow");
+    
+    }
+    t--;
+}
+void print(){
+    int i;
+    printf("\n");
+    for (i=0;i<=t;i++){
+        printf("%d ",a[i]);
+    }
+}
+int insert (int n ){
+    if (t==size-1){
+        printf("Stack is full\n");
+        print();
+        return -1;
+    }
+    else if (t==-1){
+        t=0;
+        a[t]=n;
+    }
+    else if (t==size-1){
+        printf("Stack is full\n");
+        print();
+        return -1;
+    }
+    else {
+        t++;
+        a[t]=n;
+    }
+}
+int main()
+{
+    int n;
+    while (1){
+        scanf("%d",&n);
+        if (n==-1)
+        break;
+        int d=insert(n);
+        if (d==-1)
+        break;
+    }
+    printf("\nThis is deletion operation eneter number of elements to delete \n");
+    
+    scanf("%d",&n);
+    while( i <n){
+        delete();
+        i++;
+    }
+    print();
+    
+    return 0;
+}
