@@ -3,7 +3,7 @@
 - 🌱 I’m currently learning ...webdevelopment. 
 - 💞️ I’m looking to collaborate on ...not sure 
 - 📫 How to reach me ...omkargundle1605@gmail.com
-- 😄 Pronouns: ...omi
+- 😄 Pronouns: ...really omkar is a good name. 
 - ⚡ Fun fact: ...life gives u lemons use it before they rot.
 
 <!---
